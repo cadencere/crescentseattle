@@ -910,6 +910,59 @@
             footer { flex-direction: column; gap: 16px; text-align: center; padding: 48px 24px; }
             .about-visual { aspect-ratio: 16/9; }
         }
+
+        @media (max-width: 600px) {
+            html { overflow-x: hidden; }
+            body { overflow-x: hidden; }
+
+            nav { padding: 0 16px; height: 60px; }
+            .logo-top { font-size: 16px; letter-spacing: 4px; }
+            .logo-bottom { font-size: 7px; letter-spacing: 3px; }
+
+            section { padding: 56px 20px; }
+
+            .hero { min-height: 0; height: auto; padding: 100px 0 64px; }
+            .hero-content { padding: 0 20px; }
+            .hero-tag { font-size: 11px; letter-spacing: 2px; margin-bottom: 16px; }
+            .hero-title { font-size: 36px; line-height: 1.1; margin-bottom: 18px; }
+            .hero-sub { font-size: 15px; line-height: 1.55; margin-bottom: 28px; }
+            .hero-details { flex-direction: column; gap: 18px; margin-bottom: 32px; }
+            .hero-detail-value { font-size: 22px; }
+            .hero-detail-label { font-size: 10px; }
+            .hero-btn { padding: 14px 28px; font-size: 12px; letter-spacing: 1.5px; width: 100%; text-align: center; }
+            .hero-scroll { display: none; }
+
+            .geo-1 { width: 240px; height: 240px; top: -60px; right: -60px; }
+            .geo-2 { width: 180px; height: 180px; bottom: -40px; left: -40px; }
+            .geo-3 { width: 120px; height: 120px; }
+            .geo-4 { width: 100px; height: 100px; }
+            .geo-5 { display: none; }
+            .geo-6 { width: 160px; height: 160px; }
+
+            .section-tag { font-size: 10px; letter-spacing: 2px; }
+            .section-title { font-size: 28px !important; line-height: 1.15; }
+            .section-text { font-size: 15px; line-height: 1.55; }
+
+            .plan-card { padding: 28px 20px; }
+            .amenity-card { padding: 24px 18px; }
+            .amenity-icon { font-size: 28px; }
+            .amenity-name { font-size: 14px; }
+            .amenity-desc { font-size: 13px; }
+
+            .gallery-grid { grid-template-columns: 1fr !important; gap: 12px; }
+            .gallery-item { aspect-ratio: 4/3; }
+
+            .neighborhood-map { aspect-ratio: 4/3; }
+            .neighborhood-map iframe { height: 100%; }
+
+            footer { padding: 40px 20px; font-size: 12px; }
+        }
+
+        @media (max-width: 380px) {
+            .hero-title { font-size: 30px; }
+            .section-title { font-size: 24px !important; }
+            .logo-top { font-size: 14px; letter-spacing: 3px; }
+        }
     </style>
     <style>
         /* Password gate overlay */
