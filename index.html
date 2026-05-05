@@ -10,6 +10,11 @@
     <meta property="og:description" content="A new home in Columbia City, Seattle. Coming soon.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://crescentseattle.com">
+    <meta property="og:image" content="https://crescentseattle.com/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://crescentseattle.com/og-image.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;500;600;700&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
@@ -27,46 +32,54 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html, body {
-            height: 100%;
-            overflow: hidden;
-        }
+        html { height: 100%; }
 
         body {
+            min-height: 100%;
             font-family: 'Hind', sans-serif;
             color: var(--warm-white);
             background: var(--forest);
             -webkit-font-smoothing: antialiased;
             display: flex;
-            align-items: center;
-            justify-content: center;
+            flex-direction: column;
             position: relative;
+            overflow-x: hidden;
         }
 
         body::before {
             content: '';
-            position: absolute;
+            position: fixed;
             inset: 0;
             background: radial-gradient(ellipse at center, rgba(139, 173, 126, 0.18) 0%, transparent 65%);
             pointer-events: none;
+            z-index: 0;
         }
 
         body::after {
             content: '';
-            position: absolute;
+            position: fixed;
             inset: 0;
             background:
                 radial-gradient(circle at 20% 30%, rgba(107, 143, 113, 0.12) 0%, transparent 50%),
                 radial-gradient(circle at 80% 70%, rgba(45, 90, 63, 0.20) 0%, transparent 50%);
             pointer-events: none;
+            z-index: 0;
+        }
+
+        .main {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 80px 24px 40px;
+            position: relative;
+            z-index: 2;
         }
 
         .container {
-            position: relative;
-            z-index: 2;
             text-align: center;
-            padding: 0 32px;
             max-width: 640px;
+            width: 100%;
         }
 
         .logo {
@@ -153,16 +166,15 @@
         }
 
         .footer-mark {
-            position: absolute;
-            bottom: 32px;
-            left: 50%;
-            transform: translateX(-50%);
+            text-align: center;
+            padding: 24px 24px 32px;
             font-family: 'Hind', sans-serif;
             font-size: 11px;
             font-weight: 400;
             letter-spacing: 2px;
             text-transform: uppercase;
             color: rgba(184, 206, 171, 0.5);
+            position: relative;
             z-index: 2;
         }
 
@@ -177,28 +189,41 @@
         }
 
         @media (max-width: 600px) {
-            .logo-top { font-size: 24px; letter-spacing: 8px; }
+            .main { padding: 56px 20px 32px; }
+            .logo { margin-bottom: 40px; }
+            .logo-top { font-size: 22px; letter-spacing: 7px; }
             .logo-bottom { font-size: 8px; letter-spacing: 4px; }
-            .lede { font-size: 15px; }
-            .footer-mark { font-size: 10px; bottom: 20px; }
+            .tagline { font-size: 12px; letter-spacing: 3px; margin-bottom: 18px; }
+            h1 { font-size: 38px; margin-bottom: 24px; }
+            .lede { font-size: 15px; line-height: 1.55; margin-bottom: 36px; }
+            .contact { font-size: 13px; padding: 13px 24px; }
+            .footer-mark { font-size: 10px; letter-spacing: 1.5px; padding: 16px 20px 24px; }
+        }
+
+        @media (max-width: 380px) {
+            .logo-top { font-size: 19px; letter-spacing: 6px; }
+            h1 { font-size: 32px; }
+            .lede { font-size: 14px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo">
-            <div class="logo-top">CRES<span class="logo-accent">CENT</span></div>
-            <div class="logo-bottom">SEATTLE</div>
+    <main class="main">
+        <div class="container">
+            <div class="logo">
+                <div class="logo-top">CRES<span class="logo-accent">CENT</span></div>
+                <div class="logo-bottom">SEATTLE</div>
+            </div>
+
+            <div class="tagline">Columbia City</div>
+            <h1>Coming soon.</h1>
+            <p class="lede">A new home in one of Seattle's most loved neighborhoods. We're putting the finishing touches on something special.</p>
+
+            <a href="mailto:tayler@peaklivingps.com?subject=Crescent%20Apartments%20-%20Inquiry" class="contact">
+                Get on the list
+            </a>
         </div>
-
-        <div class="tagline">Columbia City</div>
-        <h1>Coming soon.</h1>
-        <p class="lede">A new home in one of Seattle's most loved neighborhoods. We're putting the finishing touches on something special.</p>
-
-        <a href="mailto:tayler@peaklivingps.com?subject=Crescent%20Apartments%20-%20Inquiry" class="contact">
-            Get on the list
-        </a>
-    </div>
+    </main>
 
     <div class="footer-mark">
         A <a href="https://www.cadencere.com" target="_blank" rel="noopener">Cadence</a> property
