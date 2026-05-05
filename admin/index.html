@@ -1,0 +1,1409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crescent Apartments | Seattle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@200;300;400;500;600;700&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --forest: #1E3B2F;
+            --deep-green: #2D5A3F;
+            --sage: #6B8F71;
+            --moss: #8AAD7E;
+            --mint: #B8CEAB;
+            --light-mint: #D4E4CC;
+            --cream: #F4F0E6;
+            --warm-white: #FAFAF6;
+            --charcoal: #1C1C1C;
+            --soft-black: #2A2A2A;
+            --warm-gray: #6B6B6B;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Hind', sans-serif;
+            color: var(--charcoal);
+            background: var(--warm-white);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ─── NAV ─── */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 0 48px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(250, 250, 246, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(30, 59, 47, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(250, 250, 246, 0.97);
+            box-shadow: 0 1px 20px rgba(0,0,0,0.06);
+        }
+
+        .nav-logo {
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1;
+        }
+
+        .logo-top {
+            font-family: 'Heebo', sans-serif;
+            font-size: 20px;
+            font-weight: 200;
+            color: var(--forest);
+            letter-spacing: 6px;
+        }
+
+        .logo-accent {
+            color: var(--sage);
+        }
+
+        .logo-bottom {
+            font-family: 'Heebo', sans-serif;
+            font-size: 8px;
+            font-weight: 400;
+            color: var(--sage);
+            letter-spacing: 3.5px;
+            margin-top: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--warm-gray);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover { color: var(--forest); }
+
+        .nav-cta {
+            background: var(--forest);
+            color: var(--cream) !important;
+            padding: 10px 24px;
+            border-radius: 4px;
+            letter-spacing: 1px !important;
+            transition: background 0.3s !important;
+        }
+
+        .nav-cta:hover { background: var(--deep-green) !important; }
+
+        .mobile-menu { display: none; cursor: pointer; }
+        .mobile-menu span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--forest);
+            margin: 5px 0;
+            transition: all 0.3s;
+        }
+
+        /* ─── HERO ─── */
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: var(--forest);
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            opacity: 0.12;
+        }
+
+        /* Bauhaus geometric pattern */
+        .hero-pattern {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+
+        .geo-shape {
+            position: absolute;
+        }
+
+        .geo-1 { width: 500px; height: 500px; background: var(--deep-green); top: -100px; right: -80px; border-radius: 50%; opacity: 0.25; }
+        .geo-2 { width: 350px; height: 350px; background: var(--sage); bottom: -80px; left: -60px; border-radius: 50%; opacity: 0.18; }
+        .geo-3 { width: 250px; height: 250px; background: var(--moss); top: 25%; left: 55%; border-radius: 0 0 50% 50%; opacity: 0.15; }
+        .geo-4 { width: 180px; height: 180px; background: var(--mint); bottom: 15%; right: 25%; border-radius: 50% 50% 0 0; opacity: 0.12; }
+        .geo-5 { width: 120px; height: 400px; background: var(--light-mint); top: 10%; right: 15%; border-radius: 60px; opacity: 0.06; transform: rotate(15deg); }
+        .geo-6 { width: 300px; height: 300px; background: var(--sage); bottom: 5%; left: 35%; border-radius: 50% 0 50% 0; opacity: 0.08; }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding: 0 80px;
+            max-width: 900px;
+        }
+
+        .hero-tag {
+            font-size: 12px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--mint);
+            font-weight: 500;
+            margin-bottom: 24px;
+        }
+
+        .hero-title {
+            font-family: 'Heebo', sans-serif;
+            font-size: clamp(48px, 7vw, 88px);
+            font-weight: 500;
+            color: var(--cream);
+            line-height: 1.05;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+
+        .hero-sub {
+            font-size: 18px;
+            color: var(--mint);
+            font-weight: 300;
+            line-height: 1.7;
+            max-width: 520px;
+            margin-bottom: 40px;
+        }
+
+        .hero-details {
+            display: flex;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .hero-detail {
+            text-align: left;
+        }
+
+        .hero-detail-value {
+            font-family: 'Heebo', sans-serif;
+            font-size: 28px;
+            color: var(--cream);
+        }
+
+        .hero-detail-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--sage);
+            margin-top: 4px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            padding: 16px 40px;
+            background: var(--cream);
+            color: var(--forest);
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .hero-btn:hover {
+            background: var(--light-mint);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+        }
+
+        .hero-scroll {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+        }
+
+        .hero-scroll span {
+            display: block;
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--sage), transparent);
+            margin: 0 auto;
+        }
+
+        .hero-scroll-text {
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--sage);
+            margin-bottom: 12px;
+        }
+
+        /* ─── SECTIONS ─── */
+        section {
+            padding: 120px 80px;
+        }
+
+        .section-tag {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--sage);
+            font-weight: 500;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Heebo', sans-serif;
+            font-size: clamp(32px, 4vw, 52px);
+            font-weight: 600;
+            color: var(--forest);
+            line-height: 1.1;
+            letter-spacing: -1px;
+            margin-bottom: 24px;
+        }
+
+        .section-text {
+            font-size: 16px;
+            color: var(--warm-gray);
+            line-height: 1.8;
+            max-width: 600px;
+            font-weight: 300;
+        }
+
+        /* ─── ABOUT ─── */
+        .about {
+            background: var(--light-mint);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about-visual {
+            aspect-ratio: 4/5;
+            background: var(--forest);
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .about-visual-text {
+            font-family: 'Heebo', sans-serif;
+            font-size: 120px;
+            color: var(--deep-green);
+            opacity: 0.3;
+            line-height: 1;
+        }
+
+        .about-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--sage);
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 48px;
+        }
+
+        .stat {
+            padding: 24px;
+            background: rgba(255,255,255,0.6);
+            border-radius: 8px;
+        }
+
+        .stat-value {
+            font-family: 'Heebo', sans-serif;
+            font-size: 36px;
+            color: var(--forest);
+        }
+
+        .stat-label {
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--warm-gray);
+            margin-top: 4px;
+        }
+
+        /* ─── FLOOR PLANS ─── */
+        .floorplans {
+            background: var(--cream);
+        }
+
+        .floorplans-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 64px;
+        }
+
+        .floorplans-header .section-text {
+            margin: 0 auto;
+        }
+
+        .plan-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .plan-card {
+            background: var(--warm-white);
+            border-radius: 12px;
+            padding: 48px 36px;
+            text-align: center;
+            transition: all 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--sage), var(--mint));
+            opacity: 0;
+            transition: opacity 0.4s;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(30, 59, 47, 0.1);
+        }
+
+        .plan-card:hover::before { opacity: 1; }
+
+        .plan-type {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--sage);
+            font-weight: 600;
+        }
+
+        .plan-name {
+            font-family: 'Heebo', sans-serif;
+            font-size: 32px;
+            color: var(--forest);
+            margin: 12px 0;
+        }
+
+        .plan-details {
+            font-size: 14px;
+            color: var(--warm-gray);
+            margin-bottom: 24px;
+        }
+
+        .plan-price {
+            font-family: 'Heebo', sans-serif;
+            font-size: 24px;
+            color: var(--deep-green);
+            margin-bottom: 4px;
+        }
+
+        .plan-price-label {
+            font-size: 11px;
+            color: var(--warm-gray);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .plan-divider {
+            width: 40px;
+            height: 1px;
+            background: var(--mint);
+            margin: 24px auto;
+        }
+
+        .plan-sqft {
+            font-size: 14px;
+            color: var(--sage);
+            font-weight: 500;
+        }
+
+        /* ─── AMENITIES ─── */
+        .amenities {
+            background: var(--forest);
+            color: var(--cream);
+        }
+
+        .amenities .section-tag { color: var(--mint); }
+        .amenities .section-title { color: var(--cream); }
+        .amenities .section-text { color: var(--mint); }
+
+        .amenities-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 48px;
+            max-width: 1100px;
+            margin: 64px auto 0;
+        }
+
+        .amenity-item {
+            padding: 36px;
+            border: 1px solid rgba(184, 206, 171, 0.15);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .amenity-item:hover {
+            background: rgba(184, 206, 171, 0.06);
+            border-color: rgba(184, 206, 171, 0.3);
+        }
+
+        .amenity-name {
+            font-family: 'Heebo', sans-serif;
+            font-size: 20px;
+            color: var(--cream);
+            margin-bottom: 8px;
+        }
+
+        .amenity-desc {
+            font-size: 14px;
+            color: var(--sage);
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* ─── CRESCENT COMMONS FEATURE ─── */
+        .commons {
+            background: var(--mint);
+            text-align: center;
+        }
+
+        .commons-inner {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .commons-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--forest);
+            color: var(--cream);
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-weight: 600;
+            border-radius: 20px;
+            margin-bottom: 24px;
+        }
+
+        .commons-title {
+            font-family: 'Heebo', sans-serif;
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            color: var(--forest);
+            margin-bottom: 24px;
+        }
+
+        .commons-text {
+            font-size: 18px;
+            color: var(--warm-gray);
+            line-height: 1.8;
+            font-weight: 300;
+            max-width: 650px;
+            margin: 0 auto 48px;
+        }
+
+        .commons-visual {
+            width: 100%;
+            aspect-ratio: 21/9;
+            background: linear-gradient(135deg, var(--forest) 0%, var(--deep-green) 50%, var(--sage) 100%);
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .commons-visual-label {
+            color: var(--mint);
+            font-size: 13px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .commons-features {
+            display: flex;
+            justify-content: center;
+            gap: 64px;
+            margin-top: 48px;
+        }
+
+        .commons-feature {
+            text-align: center;
+        }
+
+        .commons-feature-name {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--forest);
+            margin-bottom: 4px;
+        }
+
+        .commons-feature-desc {
+            font-size: 13px;
+            color: var(--warm-gray);
+        }
+
+        /* ─── NEIGHBORHOOD ─── */
+        .neighborhood {
+            background: var(--warm-white);
+            position: relative;
+        }
+
+        .neighborhood::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: linear-gradient(180deg, var(--light-mint) 0%, var(--warm-white) 100%);
+            opacity: 0.5;
+        }
+
+        .neighborhood-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: start;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .neighborhood-list {
+            list-style: none;
+            margin-top: 40px;
+        }
+
+        .neighborhood-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(30, 59, 47, 0.08);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .neighborhood-list li:last-child { border: none; }
+
+        .neighborhood-name {
+            font-weight: 500;
+            color: var(--charcoal);
+        }
+
+        .neighborhood-distance {
+            font-size: 13px;
+            color: var(--sage);
+            font-weight: 500;
+        }
+
+        .neighborhood-map {
+            aspect-ratio: 1;
+            background: var(--cream);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .neighborhood-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 12px;
+        }
+
+        /* ─── GALLERY PLACEHOLDER ─── */
+        .gallery {
+            background: var(--cream);
+        }
+
+        .gallery-item:nth-child(1) { background: var(--forest); }
+        .gallery-item:nth-child(2) { background: var(--deep-green); }
+        .gallery-item:nth-child(3) { background: var(--sage); color: var(--cream); }
+        .gallery-item:nth-child(4) { background: var(--moss); color: var(--cream); }
+        .gallery-item:nth-child(5) { background: var(--deep-green); }
+
+        .gallery-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 64px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .gallery-item {
+            aspect-ratio: 1;
+            background: var(--forest);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--sage);
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            opacity: 0.7;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:first-child {
+            grid-column: span 2;
+            grid-row: span 2;
+        }
+
+        .gallery-item:hover { opacity: 1; }
+
+        /* ─── CONTACT ─── */
+        .contact {
+            background: var(--forest);
+            color: var(--cream);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .contact .section-tag { color: var(--mint); }
+        .contact .section-title { color: var(--cream); }
+
+        .contact-info {
+            margin-top: 40px;
+        }
+
+        .contact-row {
+            margin-bottom: 24px;
+        }
+
+        .contact-label {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--sage);
+            margin-bottom: 4px;
+        }
+
+        .contact-value {
+            font-size: 18px;
+            color: var(--cream);
+            font-weight: 300;
+        }
+
+        .contact-value a {
+            color: var(--mint);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-value a:hover { color: var(--cream); }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(184, 206, 171, 0.2);
+            border-radius: 6px;
+            padding: 16px 20px;
+            color: var(--cream);
+            font-family: 'Hind', sans-serif;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form input::placeholder,
+        .contact-form textarea::placeholder {
+            color: var(--sage);
+            opacity: 0.6;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--mint);
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contact-form button {
+            align-self: flex-start;
+            padding: 16px 40px;
+            background: var(--cream);
+            color: var(--forest);
+            border: none;
+            border-radius: 4px;
+            font-family: 'Hind', sans-serif;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .contact-form button:hover {
+            background: var(--mint);
+            transform: translateY(-2px);
+        }
+
+        /* ─── BAUHAUS BAND ─── */
+        .bauhaus-band {
+            display: flex;
+            height: 6px;
+        }
+        .bauhaus-band div { flex: 1; }
+        .bauhaus-band .b1 { background: var(--forest); }
+        .bauhaus-band .b2 { background: var(--deep-green); }
+        .bauhaus-band .b3 { background: var(--sage); }
+        .bauhaus-band .b4 { background: var(--moss); }
+        .bauhaus-band .b5 { background: var(--mint); }
+        .bauhaus-band .b6 { background: var(--light-mint); }
+        .bauhaus-band .b7 { background: var(--cream); }
+
+        /* ─── FOOTER ─── */
+        footer {
+            background: var(--charcoal);
+            padding: 48px 80px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            font-family: 'Heebo', sans-serif;
+            font-size: 14px;
+            font-weight: 200;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--cream);
+        }
+
+        .footer-text {
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .footer-managed {
+            font-size: 12px;
+            color: var(--warm-gray);
+        }
+
+        .footer-managed a {
+            color: var(--sage);
+            text-decoration: none;
+        }
+
+        /* ─── ANIMATIONS ─── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1024px) {
+            section { padding: 80px 40px; }
+            .about-grid, .neighborhood-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+            .plan-grid { grid-template-columns: repeat(2, 1fr); }
+            .amenities-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-content { padding: 0 40px; }
+            footer { padding: 48px 40px; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 24px; }
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: var(--warm-white);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid rgba(30,59,47,0.08);
+            }
+            .mobile-menu { display: block; }
+            section { padding: 64px 24px; }
+            .hero-content { padding: 0 24px; }
+            .hero-details { gap: 32px; }
+            .plan-grid { grid-template-columns: 1fr; }
+            .amenities-grid { grid-template-columns: 1fr; }
+            .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+            .commons-features { flex-direction: column; gap: 32px; }
+            footer { flex-direction: column; gap: 16px; text-align: center; padding: 48px 24px; }
+            .about-visual { aspect-ratio: 16/9; }
+        }
+    </style>
+    <style>
+        /* Password gate overlay */
+        #gate-overlay {
+            position: fixed;
+            inset: 0;
+            background: #1E3B2F;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Hind', sans-serif;
+            color: #FAFAF6;
+        }
+        #gate-overlay.unlocked { display: none; }
+        #gate-box {
+            text-align: center;
+            padding: 0 32px;
+            max-width: 360px;
+        }
+        #gate-box .gate-logo {
+            font-family: 'Heebo', sans-serif;
+            font-size: 24px;
+            font-weight: 200;
+            letter-spacing: 8px;
+            color: #FAFAF6;
+            margin-bottom: 8px;
+        }
+        #gate-box .gate-logo span { color: #8AAD7E; }
+        #gate-box .gate-sub {
+            font-family: 'Heebo', sans-serif;
+            font-size: 9px;
+            font-weight: 300;
+            letter-spacing: 5px;
+            color: #B8CEAB;
+            margin-bottom: 48px;
+            opacity: 0.85;
+        }
+        #gate-box .gate-label {
+            font-family: 'Heebo', sans-serif;
+            font-size: 12px;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #B8CEAB;
+            margin-bottom: 16px;
+            opacity: 0.7;
+        }
+        #gate-input {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(184, 206, 171, 0.3);
+            border-radius: 2px;
+            color: #FAFAF6;
+            font-family: 'Hind', sans-serif;
+            font-size: 16px;
+            letter-spacing: 4px;
+            text-align: center;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+        #gate-input:focus { border-color: #8AAD7E; }
+        #gate-input::placeholder { color: rgba(184, 206, 171, 0.4); letter-spacing: 4px; }
+        #gate-error {
+            font-size: 12px;
+            color: #ff9999;
+            margin-top: 12px;
+            min-height: 16px;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+        #gate-error.show { opacity: 1; }
+        #gate-btn {
+            margin-top: 20px;
+            padding: 12px 32px;
+            background: #8AAD7E;
+            border: none;
+            border-radius: 2px;
+            color: #1E3B2F;
+            font-family: 'Heebo', sans-serif;
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        #gate-btn:hover { background: #B8CEAB; }
+    </style>
+</head>
+<body>
+
+    <div id="gate-overlay">
+        <div id="gate-box">
+            <div class="gate-logo">CRES<span>CENT</span></div>
+            <div class="gate-sub">SEATTLE</div>
+            <div class="gate-label">Preview Access</div>
+            <input id="gate-input" type="password" inputmode="numeric" autocomplete="off" placeholder="••••" maxlength="20" autofocus>
+            <div id="gate-error">Incorrect code</div>
+            <button id="gate-btn" type="button">Enter</button>
+        </div>
+    </div>
+
+    <script>
+    (function(){
+        var KEY = "crescent_admin_unlocked";
+        var CODE = "6242";
+        var overlay = document.getElementById("gate-overlay");
+        var input = document.getElementById("gate-input");
+        var err = document.getElementById("gate-error");
+        var btn = document.getElementById("gate-btn");
+
+        if (sessionStorage.getItem(KEY) === "1") {
+            overlay.classList.add("unlocked");
+        } else {
+            document.documentElement.style.overflow = "hidden";
+        }
+
+        function tryUnlock() {
+            if (input.value === CODE) {
+                sessionStorage.setItem(KEY, "1");
+                overlay.classList.add("unlocked");
+                document.documentElement.style.overflow = "";
+            } else {
+                err.classList.add("show");
+                input.value = "";
+                input.focus();
+                setTimeout(function(){ err.classList.remove("show"); }, 2000);
+            }
+        }
+
+        btn.addEventListener("click", tryUnlock);
+        input.addEventListener("keydown", function(e){
+            if (e.key === "Enter") { e.preventDefault(); tryUnlock(); }
+        });
+    })();
+    </script>
+
+    <!-- NAV -->
+    <nav id="nav">
+        <a href="#" class="nav-logo">
+        <span class="logo-top"><span class="logo-accent">C</span>RES<span class="logo-accent">C</span>ENT</span>
+        <span class="logo-bottom">COLUMBIA CITY</span>
+    </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#about">About</a></li>
+            <li><a href="#floorplans">Floor Plans</a></li>
+            <li><a href="#amenities">Amenities</a></li>
+            <li><a href="#commons">The Commons</a></li>
+            <li><a href="#neighborhood">Neighborhood</a></li>
+            <li><a href="#contact" class="nav-cta">Schedule a Tour</a></li>
+        </ul>
+        <div class="mobile-menu" id="mobileMenu">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-pattern">
+            <div class="geo-shape geo-1"></div>
+            <div class="geo-shape geo-2"></div>
+            <div class="geo-shape geo-3"></div>
+            <div class="geo-shape geo-4"></div>
+            <div class="geo-shape geo-5"></div>
+            <div class="geo-shape geo-6"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-tag">Now Leasing in Columbia City</div>
+            <h1 class="hero-title">Modern Living,<br>Naturally.</h1>
+            <p class="hero-sub">37 beautifully renovated apartments in the heart of Columbia City. Designed for comfort. Priced for living.</p>
+            <div class="hero-details">
+                <div class="hero-detail">
+                    <div class="hero-detail-value">Studio-2BR</div>
+                    <div class="hero-detail-label">Floor Plans</div>
+                </div>
+                <div class="hero-detail">
+                    <div class="hero-detail-value">534-844 SF</div>
+                    <div class="hero-detail-label">Square Feet</div>
+                </div>
+                <div class="hero-detail">
+                    <div class="hero-detail-value">$1,295+</div>
+                    <div class="hero-detail-label">Starting At</div>
+                </div>
+            </div>
+            <a href="#contact" class="hero-btn">Schedule a Tour</a>
+        </div>
+        <div class="hero-scroll">
+            <div class="hero-scroll-text">Explore</div>
+            <span></span>
+        </div>
+    </section>
+
+    <!-- BAUHAUS BAND -->
+    <div class="bauhaus-band"><div class="b1"></div><div class="b2"></div><div class="b3"></div><div class="b4"></div><div class="b5"></div><div class="b6"></div><div class="b7"></div></div>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+        <div class="about-grid">
+            <div>
+                <div class="section-tag">About Crescent</div>
+                <h2 class="section-title">Where comfort meets community</h2>
+                <p class="section-text">
+                    Crescent Apartments offers 37 thoughtfully updated homes across three floors in one of Seattle's most vibrant neighborhoods. Every detail has been considered - from modern finishes to shared outdoor spaces designed for gathering.
+                </p>
+                <p class="section-text" style="margin-top: 16px;">
+                    Located on 42nd Ave S, you're steps from Columbia City's celebrated restaurants, shops, and the Link Light Rail - connecting you to downtown in minutes.
+                </p>
+                <div class="about-stats">
+                    <div class="stat">
+                        <div class="stat-value">37</div>
+                        <div class="stat-label">Apartment Homes</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Floor Plans</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">3</div>
+                        <div class="stat-label">Stories</div>
+                    </div>
+                    <div class="stat">
+                        <div class="stat-value">2024</div>
+                        <div class="stat-label">Renovated</div>
+                    </div>
+                </div>
+            </div>
+            <div class="about-visual">
+                <div class="about-visual-text">C</div>
+                <div class="about-placeholder">Photo Coming Soon</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLOOR PLANS -->
+    <section class="floorplans" id="floorplans">
+        <div class="floorplans-header">
+            <div class="section-tag">Floor Plans</div>
+            <h2 class="section-title">Find your fit</h2>
+            <p class="section-text">Three layouts designed for the way you live. Every home features modern finishes, generous closet space, and plenty of natural light.</p>
+        </div>
+        <div class="plan-grid">
+            <div class="plan-card fade-up">
+                <div class="plan-type">Studio</div>
+                <div class="plan-name">The Crescent</div>
+                <div class="plan-details">Studio / 1 Bath</div>
+                <div class="plan-divider"></div>
+                <div class="plan-price">$1,295 - $1,350</div>
+                <div class="plan-price-label">Per Month</div>
+                <div class="plan-divider"></div>
+                <div class="plan-sqft">534 sq ft</div>
+            </div>
+            <div class="plan-card fade-up">
+                <div class="plan-type">One Bedroom</div>
+                <div class="plan-name">The Columbia</div>
+                <div class="plan-details">1 Bed / 1 Bath</div>
+                <div class="plan-divider"></div>
+                <div class="plan-price">$1,695 - $1,775</div>
+                <div class="plan-price-label">Per Month</div>
+                <div class="plan-divider"></div>
+                <div class="plan-sqft">624 sq ft</div>
+            </div>
+            <div class="plan-card fade-up">
+                <div class="plan-type">Two Bedroom</div>
+                <div class="plan-name">The Rainier</div>
+                <div class="plan-details">2 Bed / 1 Bath</div>
+                <div class="plan-divider"></div>
+                <div class="plan-price">$2,045 - $2,245</div>
+                <div class="plan-price-label">Per Month</div>
+                <div class="plan-divider"></div>
+                <div class="plan-sqft">844 sq ft</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AMENITIES -->
+    <section class="amenities" id="amenities">
+        <div style="text-align: center; max-width: 600px; margin: 0 auto 64px;">
+            <div class="section-tag">Amenities</div>
+            <h2 class="section-title">Everything you need,<br>nothing you don't</h2>
+        </div>
+        <div class="amenities-grid">
+            <div class="amenity-item fade-up">
+                <div class="amenity-name">Modern Kitchens</div>
+                <div class="amenity-desc">Updated cabinetry, quartz countertops, and stainless steel appliances in every home.</div>
+            </div>
+            <div class="amenity-item fade-up">
+                <div class="amenity-name">On-Site Laundry</div>
+                <div class="amenity-desc">Common area laundry facility available for all residents.</div>
+            </div>
+            <div class="amenity-item fade-up">
+                <div class="amenity-name">Controlled Access</div>
+                <div class="amenity-desc">Controlled access building for peace of mind.</div>
+            </div>
+            <div class="amenity-item fade-up">
+                <div class="amenity-name">Parking</div>
+                <div class="amenity-desc">On-site parking available for residents.</div>
+            </div>
+            <div class="amenity-item fade-up">
+                <div class="amenity-name">Pet Friendly</div>
+                <div class="amenity-desc">Your pets are welcome here. We love four-legged residents too.</div>
+            </div>
+            <div class="amenity-item fade-up">
+                <div class="amenity-name">Light Rail Access</div>
+                <div class="amenity-desc">Minutes from the Columbia City Link station. Downtown in 15 minutes.</div>
+            </div>
+            <div class="amenity-item fade-up">
+                <div class="amenity-name">Common Area Storage</div>
+                <div class="amenity-desc">Secure shared storage space available for residents who need extra room.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CRESCENT COMMONS -->
+    <section class="commons" id="commons">
+        <div class="commons-inner">
+            <div class="commons-badge">Community Highlight</div>
+            <h2 class="commons-title">Crescent Commons</h2>
+            <p class="commons-text">
+                Our shared outdoor gathering space, designed for connection. Whether it's a Saturday afternoon cookout or a quiet evening by the fire, the Commons is where neighbors become friends.
+            </p>
+            <div class="commons-visual">
+                <div class="commons-visual-label">Photo Coming Soon</div>
+            </div>
+            <div class="commons-features">
+                <div class="commons-feature">
+                    <div class="commons-feature-name">Fire Pit Lounge</div>
+                    <div class="commons-feature-desc">Year-round gathering spot</div>
+                </div>
+                <div class="commons-feature">
+                    <div class="commons-feature-name">BBQ Station</div>
+                    <div class="commons-feature-desc">Gas grills and prep area</div>
+                </div>
+                <div class="commons-feature">
+                    <div class="commons-feature-name">Garden Seating</div>
+                    <div class="commons-feature-desc">Landscaped outdoor lounge</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEIGHBORHOOD -->
+    <section class="neighborhood" id="neighborhood">
+        <div class="neighborhood-grid">
+            <div>
+                <div class="section-tag">Neighborhood</div>
+                <h2 class="section-title">Columbia City.<br>One of Seattle's best.</h2>
+                <p class="section-text">A walkable, diverse neighborhood with an independent spirit. Great food, local shops, easy transit, and a tight-knit community feel.</p>
+                <ul class="neighborhood-list">
+                    <li>
+                        <span class="neighborhood-name">Columbia City Link Light Rail</span>
+                        <span class="neighborhood-distance">0.4 mi</span>
+                    </li>
+                    <li>
+                        <span class="neighborhood-name">Columbia City Bakery</span>
+                        <span class="neighborhood-distance">0.5 mi</span>
+                    </li>
+                    <li>
+                        <span class="neighborhood-name">Rainier Beach High School</span>
+                        <span class="neighborhood-distance">0.8 mi</span>
+                    </li>
+                    <li>
+                        <span class="neighborhood-name">Genesee Park & Playfield</span>
+                        <span class="neighborhood-distance">0.6 mi</span>
+                    </li>
+                    <li>
+                        <span class="neighborhood-name">Downtown Seattle (via Link)</span>
+                        <span class="neighborhood-distance">15 min</span>
+                    </li>
+                    <li>
+                        <span class="neighborhood-name">SeaTac Airport (via Link)</span>
+                        <span class="neighborhood-distance">25 min</span>
+                    </li>
+                </ul>
+            </div>
+            <div class="neighborhood-map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2695.5!2d-122.283!3d47.562!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDMzJzQzLjIiTiAxMjLCsDE2JzU4LjgiVw!5e0!3m2!1sen!2sus!4v1" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section class="gallery" id="gallery">
+        <div class="gallery-header">
+            <div class="section-tag">Gallery</div>
+            <h2 class="section-title">See for yourself</h2>
+            <p class="section-text">Photos coming soon. Schedule a tour to see the space in person.</p>
+        </div>
+        <div class="gallery-grid">
+            <div class="gallery-item">Exterior</div>
+            <div class="gallery-item">Kitchen</div>
+            <div class="gallery-item">Living Room</div>
+            <div class="gallery-item">Bedroom</div>
+            <div class="gallery-item">Crescent Commons</div>
+        </div>
+    </section>
+
+    <!-- BAUHAUS BAND -->
+    <div class="bauhaus-band"><div class="b7"></div><div class="b6"></div><div class="b5"></div><div class="b4"></div><div class="b3"></div><div class="b2"></div><div class="b1"></div></div>
+
+    <!-- CONTACT -->
+    <section class="contact" id="contact">
+        <div class="contact-grid">
+            <div>
+                <div class="section-tag">Contact</div>
+                <h2 class="section-title">Ready to make<br>your move?</h2>
+                <div class="contact-info">
+                    <div class="contact-row">
+                        <div class="contact-label">Address</div>
+                        <div class="contact-value">5201 42nd Ave S<br>Seattle, WA 98118</div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="contact-label">Leasing</div>
+                        <div class="contact-value"><a href="mailto:tayler@peaklivingps.com">tayler@peaklivingps.com</a></div>
+                    </div>
+                    <div class="contact-row">
+                        <div class="contact-label">Office Hours</div>
+                        <div class="contact-value">Mon - Fri: 9am - 5pm<br>Sat: By Appointment</div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h3 style="font-family: 'Heebo', sans-serif; font-size: 24px; color: var(--cream);">Schedule a Tour</h3>
+                <form class="contact-form" onsubmit="handleForm(event)">
+                    <input type="text" placeholder="Full Name" required>
+                    <input type="email" placeholder="Email Address" required>
+                    <input type="tel" placeholder="Phone Number">
+                    <textarea placeholder="Tell us what you're looking for - preferred move-in date, floor plan, questions..."></textarea>
+                    <button type="submit">Request a Tour</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- BAUHAUS BAND -->
+    <div class="bauhaus-band"><div class="b1"></div><div class="b2"></div><div class="b3"></div><div class="b4"></div><div class="b5"></div><div class="b6"></div><div class="b7"></div></div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-logo">Crescent Apartments</div>
+        <div class="footer-text">5201 42nd Ave S, Seattle, WA 98118</div>
+        <div class="footer-managed">Managed by <a href="https://www.cadencere.com" target="_blank">Peak Living Property Services</a></div>
+    </footer>
+
+    <script>
+        // Nav scroll effect
+        window.addEventListener('scroll', () => {
+            document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile menu
+        document.getElementById('mobileMenu').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('open');
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navLinks').classList.remove('open');
+            });
+        });
+
+        // Fade-up on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+        // Form handler
+        function handleForm(e) {
+            e.preventDefault();
+            const inputs = e.target.querySelectorAll('input, textarea');
+            const name = inputs[0].value;
+            const email = inputs[1].value;
+            const phone = inputs[2].value;
+            const message = inputs[3].value;
+
+            const subject = encodeURIComponent('Tour Request - Crescent Apartments');
+            const body = encodeURIComponent(
+                'Name: ' + name + '\n' +
+                'Email: ' + email + '\n' +
+                'Phone: ' + phone + '\n\n' +
+                message
+            );
+
+            window.location.href = 'mailto:tayler@peaklivingps.com?subject=' + subject + '&body=' + body;
+        }
+    </script>
+
+</body>
+</html>
