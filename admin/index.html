@@ -137,8 +137,17 @@
         .hero-bg {
             position: absolute;
             inset: 0;
-            opacity: 0.12;
+            background: url('../images/view.jpg') center/cover no-repeat;
+            opacity: 0.45;
         }
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, rgba(30,59,47,0.85) 0%, rgba(30,59,47,0.55) 60%, rgba(30,59,47,0.35) 100%);
+            z-index: 1;
+        }
+        .img-fill { width: 100%; height: 100%; object-fit: cover; display: block; }
 
         /* Bauhaus geometric pattern */
         .hero-pattern {
@@ -668,12 +677,6 @@
             background: var(--cream);
         }
 
-        .gallery-item:nth-child(1) { background: var(--forest); }
-        .gallery-item:nth-child(2) { background: var(--deep-green); }
-        .gallery-item:nth-child(3) { background: var(--sage); color: var(--cream); }
-        .gallery-item:nth-child(4) { background: var(--moss); color: var(--cream); }
-        .gallery-item:nth-child(5) { background: var(--deep-green); }
-
         .gallery-header {
             text-align: center;
             max-width: 600px;
@@ -692,23 +695,17 @@
             aspect-ratio: 1;
             background: var(--forest);
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--sage);
-            font-size: 12px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            opacity: 0.7;
-            transition: opacity 0.3s;
+            overflow: hidden;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
         }
+        .gallery-item img { transition: transform 0.6s ease; }
+        .gallery-item:hover { box-shadow: 0 16px 40px rgba(30,59,47,0.25); }
+        .gallery-item:hover img { transform: scale(1.04); }
 
         .gallery-item:first-child {
             grid-column: span 2;
             grid-row: span 2;
         }
-
-        .gallery-item:hover { opacity: 1; }
 
         /* ─── CONTACT ─── */
         .contact {
@@ -1123,6 +1120,7 @@
 
     <!-- HERO -->
     <section class="hero">
+        <div class="hero-bg"></div>
         <div class="hero-pattern">
             <div class="geo-shape geo-1"></div>
             <div class="geo-shape geo-2"></div>
@@ -1192,8 +1190,7 @@
                 </div>
             </div>
             <div class="about-visual">
-                <div class="about-visual-text">C</div>
-                <div class="about-placeholder">Photo Coming Soon</div>
+                <img class="img-fill" src="../images/living-1.jpg" alt="Crescent Apartments living room">
             </div>
         </div>
     </section>
@@ -1286,7 +1283,7 @@
                 Our shared outdoor gathering space, designed for connection. Whether it's a Saturday afternoon cookout or a quiet evening by the fire, the Commons is where neighbors become friends.
             </p>
             <div class="commons-visual">
-                <div class="commons-visual-label">Photo Coming Soon</div>
+                <img class="img-fill" src="../images/deck-1.jpg" alt="Crescent Commons rooftop deck">
             </div>
             <div class="commons-features">
                 <div class="commons-feature">
@@ -1350,14 +1347,21 @@
         <div class="gallery-header">
             <div class="section-tag">Gallery</div>
             <h2 class="section-title">See for yourself</h2>
-            <p class="section-text">Photos coming soon. Schedule a tour to see the space in person.</p>
+            <p class="section-text">Inside one of our top-floor homes. Schedule a tour to see the space in person.</p>
         </div>
         <div class="gallery-grid">
-            <div class="gallery-item">Exterior</div>
-            <div class="gallery-item">Kitchen</div>
-            <div class="gallery-item">Living Room</div>
-            <div class="gallery-item">Bedroom</div>
-            <div class="gallery-item">Crescent Commons</div>
+            <div class="gallery-item"><img class="img-fill" src="../images/view.jpg" alt="View from Crescent Apartments"></div>
+            <div class="gallery-item"><img class="img-fill" src="../images/living-2.jpg" alt="Living room"></div>
+            <div class="gallery-item"><img class="img-fill" src="../images/kitchen-1.jpg" alt="Kitchen"></div>
+            <div class="gallery-item"><img class="img-fill" src="../images/living-kitchen.jpg" alt="Open living and kitchen"></div>
+            <div class="gallery-item"><img class="img-fill" src="../images/bedroom-1.jpg" alt="Bedroom"></div>
+            <div class="gallery-item"><img class="img-fill" src="../images/bathroom-1.jpg" alt="Bathroom"></div>
+            <div class="gallery-item"><img class="img-fill" src="../images/deck-2.jpg" alt="Outdoor deck"></div>
+            <div class="gallery-item"><img class="img-fill" src="../images/entry.jpg" alt="Entry"></div>
+            <div class="gallery-item"><img class="img-fill" src="../images/kitchen-2.jpg" alt="Kitchen detail"></div>
+            <div class="gallery-item"><img class="img-fill" src="../images/living-3.jpg" alt="Living room"></div>
+            <div class="gallery-item"><img class="img-fill" src="../images/bedroom-2.jpg" alt="Second bedroom"></div>
+            <div class="gallery-item"><img class="img-fill" src="../images/bathroom-2.jpg" alt="Bathroom"></div>
         </div>
     </section>
 
