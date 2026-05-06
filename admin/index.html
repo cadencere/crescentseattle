@@ -174,8 +174,12 @@
         .hero-content {
             position: relative;
             z-index: 2;
-            padding: 0 80px;
+            padding: 56px 80px;
             max-width: 900px;
+            background: rgba(20, 40, 32, 0.55);
+            backdrop-filter: blur(2px);
+            -webkit-backdrop-filter: blur(2px);
+            margin-left: 40px;
         }
 
         .hero-tag {
@@ -972,7 +976,7 @@
             }
             .mobile-menu { display: block; }
             section { padding: 64px 24px; }
-            .hero-content { padding: 0 24px; }
+            .hero-content { padding: 40px 24px; margin-left: 16px; }
             .hero-details { gap: 32px; }
             .plan-grid { grid-template-columns: 1fr; }
             .amenities-grid { grid-template-columns: 1fr; }
@@ -993,7 +997,7 @@
             section { padding: 56px 20px; }
 
             .hero { min-height: 0; height: auto; padding: 100px 0 64px; }
-            .hero-content { padding: 0 20px; }
+            .hero-content { padding: 32px 20px; margin-left: 8px; }
             .hero-tag { font-size: 11px; letter-spacing: 2px; margin-bottom: 16px; }
             .hero-title { font-size: 36px; line-height: 1.1; margin-bottom: 18px; }
             .hero-sub { font-size: 15px; line-height: 1.55; margin-bottom: 28px; }
