@@ -1169,6 +1169,77 @@
     })();
     </script>
 
+    <!-- PRE-LEASE BANNER -->
+    <div id="prelease-banner" style="
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 200;
+        background: linear-gradient(90deg, #1E3B2F 0%, #2D5A3F 100%);
+        color: #FAFAF6;
+        padding: 12px 56px 12px 24px;
+        font-family: 'Hind', sans-serif;
+        font-size: 14px;
+        text-align: center;
+        letter-spacing: 0.5px;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+        flex-wrap: wrap;
+    ">
+        <span style="font-weight: 600; letter-spacing: 2px; text-transform: uppercase; font-size: 11px; background: #8AAD7E; color: #1E3B2F; padding: 4px 10px; border-radius: 3px;">Now Available</span>
+        <span>Units now available for pre-lease.</span>
+        <a href="#availability" style="color: #B8CEAB; text-decoration: underline; font-weight: 500;">View availability &rarr;</a>
+        <button id="prelease-close" aria-label="Dismiss" style="
+            position: absolute;
+            right: 14px; top: 50%;
+            transform: translateY(-50%);
+            background: transparent;
+            border: none;
+            color: #FAFAF6;
+            font-size: 22px;
+            line-height: 1;
+            cursor: pointer;
+            padding: 4px 8px;
+            opacity: 0.7;
+        ">&times;</button>
+    </div>
+    <style>
+        body.has-banner nav { top: 48px; }
+        body.has-banner { padding-top: 0; }
+        @media (max-width: 600px) {
+            #prelease-banner { font-size: 12px; padding: 10px 44px 10px 16px; gap: 8px; }
+            #prelease-banner span:first-child { font-size: 10px; padding: 3px 8px; }
+        }
+    </style>
+    <script>
+    (function(){
+        var KEY = 'crescent_prelease_dismissed';
+        var banner = document.getElementById('prelease-banner');
+        if (sessionStorage.getItem(KEY) === '1') {
+            banner.style.display = 'none';
+        } else {
+            document.body.classList.add('has-banner');
+            // adjust nav top dynamically
+            var setTop = function() {
+                var nav = document.getElementById('nav');
+                if (nav && banner.offsetHeight) nav.style.top = banner.offsetHeight + 'px';
+            };
+            window.addEventListener('load', setTop);
+            window.addEventListener('resize', setTop);
+            setTimeout(setTop, 100);
+        }
+        document.getElementById('prelease-close').addEventListener('click', function(){
+            sessionStorage.setItem(KEY, '1');
+            banner.style.display = 'none';
+            var nav = document.getElementById('nav');
+            if (nav) nav.style.top = '0';
+            document.body.classList.remove('has-banner');
+        });
+    })();
+    </script>
+
     <!-- NAV -->
     <nav id="nav">
         <a href="#" class="nav-logo">
@@ -1307,29 +1378,6 @@
         </div>
     </section>
 
-    <!-- AVAILABILITY -->
-    <section class="availability" id="availability" style="background: var(--warm-white); padding: 120px 80px;">
-        <div style="text-align: center; max-width: 600px; margin: 0 auto 48px;">
-            <div class="section-tag">Availability</div>
-            <h2 class="section-title">What's open now</h2>
-            <p class="section-text" style="margin: 0 auto;">Live listings from our leasing system. Apply or schedule a tour right from the listing.</p>
-        </div>
-        <div style="max-width: 1200px; margin: 0 auto; border-radius: 12px; overflow: hidden; background: var(--cream); box-shadow: 0 12px 40px rgba(30,59,47,0.08);">
-            <iframe
-                src="https://peaklivingps.appfolio.com/listings?filters[property_list]=Crescent"
-                width="100%"
-                height="900"
-                frameborder="0"
-                scrolling="auto"
-                style="border: 0; display: block; min-height: 900px;"
-                title="Crescent Apartments - Available Units"
-                loading="lazy"></iframe>
-        </div>
-        <p style="text-align: center; margin-top: 24px; font-size: 13px; color: var(--warm-gray);">
-            Don't see what you need? <a href="#contact" style="color: var(--deep-green); font-weight: 500;">Get on our list</a> and we'll reach out as soon as a unit opens up.
-        </p>
-    </section>
-
     <!-- AMENITIES -->
     <section class="amenities" id="amenities">
         <div style="text-align: center; max-width: 600px; margin: 0 auto 64px;">
@@ -1463,6 +1511,29 @@
             <button class="slide-nav next" id="slideNext" aria-label="Next">&#10095;</button>
         </div>
         <div class="slide-dots" id="slideDots"></div>
+    </section>
+
+    <!-- AVAILABILITY -->
+    <section class="availability" id="availability" style="background: var(--warm-white); padding: 120px 80px;">
+        <div style="text-align: center; max-width: 600px; margin: 0 auto 48px;">
+            <div class="section-tag">Availability</div>
+            <h2 class="section-title">What's open now</h2>
+            <p class="section-text" style="margin: 0 auto;">Live listings from our leasing system. Apply or schedule a tour right from the listing.</p>
+        </div>
+        <div style="max-width: 1200px; margin: 0 auto; border-radius: 12px; overflow: hidden; background: var(--cream); box-shadow: 0 12px 40px rgba(30,59,47,0.08);">
+            <iframe
+                src="https://peaklivingps.appfolio.com/listings?filters[property_list]=Crescent Apartments"
+                width="100%"
+                height="900"
+                frameborder="0"
+                scrolling="auto"
+                style="border: 0; display: block; min-height: 900px;"
+                title="Crescent Apartments - Available Units"
+                loading="lazy"></iframe>
+        </div>
+        <p style="text-align: center; margin-top: 24px; font-size: 13px; color: var(--warm-gray);">
+            Don't see what you need? <a href="#contact" style="color: var(--deep-green); font-weight: 500;">Get on our list</a> and we'll reach out as soon as a unit opens up.
+        </p>
     </section>
 
     <!-- BAUHAUS BAND -->
