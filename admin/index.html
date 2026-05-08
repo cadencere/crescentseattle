@@ -1526,23 +1526,88 @@
         <div style="text-align: center; max-width: 600px; margin: 0 auto 48px;">
             <div class="section-tag">Availability</div>
             <h2 class="section-title">What's open now</h2>
-            <p class="section-text" style="margin: 0 auto;">Current vacancies, pulled live from AppFolio. Click a unit to apply or book a tour.</p>
+            <p class="section-text" style="margin: 0 auto;">Click a unit to apply or schedule a tour.</p>
         </div>
-        <div style="max-width: 1200px; margin: 0 auto; border-radius: 12px; overflow: hidden; background: var(--cream); box-shadow: 0 12px 40px rgba(30,59,47,0.08);">
-            <iframe
-                src="https://peaklivingps.appfolio.com/listings?filters[property_list]=Crescent Apartments"
-                width="100%"
-                height="900"
-                frameborder="0"
-                scrolling="auto"
-                style="border: 0; display: block; min-height: 900px;"
-                title="Crescent Apartments - Available Units"
-                loading="lazy"></iframe>
+        <div id="cr-listings" style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px;">
+            <div id="cr-listings-status" style="grid-column: 1 / -1; text-align: center; color: var(--warm-gray); font-size: 14px; padding: 40px 0;">Loading available units...</div>
         </div>
-        <p style="text-align: center; margin-top: 24px; font-size: 13px; color: var(--warm-gray);">
+        <p style="text-align: center; margin-top: 32px; font-size: 13px; color: var(--warm-gray);">
             Don't see what you need? <a href="#contact" style="color: var(--deep-green); font-weight: 500;">Get on our list</a> and we'll reach out as soon as a unit opens up.
         </p>
     </section>
+
+    <style>
+        .cr-card { background: var(--cream); border-radius: 12px; overflow: hidden; box-shadow: 0 6px 20px rgba(30,59,47,0.08); transition: transform .2s, box-shadow .2s; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+        .cr-card:hover { transform: translateY(-3px); box-shadow: 0 12px 32px rgba(30,59,47,0.14); }
+        .cr-card-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; background: #e8e4d8; display: block; }
+        .cr-card-body { padding: 18px 20px 22px; }
+        .cr-card-rent { font-size: 22px; font-weight: 600; color: var(--deep-green); margin-bottom: 6px; }
+        .cr-card-meta { font-size: 13px; color: var(--warm-gray); margin-bottom: 10px; letter-spacing: .02em; }
+        .cr-card-addr { font-size: 14px; color: #333; }
+        .cr-empty { grid-column: 1 / -1; text-align: center; color: var(--warm-gray); padding: 40px 0; }
+    </style>
+
+    <script>
+    (function () {
+        var STATUS = document.getElementById('cr-listings-status');
+        var GRID = document.getElementById('cr-listings');
+        var ADDRESS_PREFIX = '5201 42nd Ave S';
+        var SOURCE_URL = 'https://peaklivingps.appfolio.com/listings';
+
+        fetch(SOURCE_URL, { credentials: 'omit' })
+            .then(function (r) { return r.text(); })
+            .then(function (html) {
+                var doc = new DOMParser().parseFromString(html, 'text/html');
+                var items = Array.prototype.slice.call(doc.querySelectorAll('.js-listing-item'));
+                var matches = items.filter(function (el) {
+                    var addr = el.querySelector('.js-listing-address');
+                    return addr && addr.textContent.indexOf(ADDRESS_PREFIX) === 0;
+                });
+
+                if (STATUS) STATUS.remove();
+
+                if (!matches.length) {
+                    var empty = document.createElement('div');
+                    empty.className = 'cr-empty';
+                    empty.innerHTML = 'No units are open right now. <a href="#contact" style="color: var(--deep-green); font-weight: 500;">Get on our list</a> and we\'ll reach out as soon as one opens up.';
+                    GRID.appendChild(empty);
+                    return;
+                }
+
+                matches.forEach(function (el) {
+                    var link = el.querySelector('a[href*="/listings/detail/"]');
+                    var href = link ? new URL(link.getAttribute('href'), 'https://peaklivingps.appfolio.com').href : '#';
+                    var img = el.querySelector('.js-listing-image');
+                    var imgSrc = img ? (img.getAttribute('data-original') || img.getAttribute('src') || '') : '';
+                    var addr = el.querySelector('.js-listing-address');
+                    var addrText = addr ? addr.textContent.trim() : '';
+                    var rent = el.querySelector('.js-listing-blurb-rent');
+                    var rentText = rent ? rent.textContent.trim() : '';
+                    var bb = el.querySelector('.js-listing-blurb-bed-bath');
+                    var bbText = bb ? bb.textContent.trim() : '';
+                    var avail = el.querySelector('.js-listing-available');
+                    var availText = avail ? avail.textContent.trim() : '';
+
+                    var card = document.createElement('a');
+                    card.className = 'cr-card';
+                    card.href = href;
+                    card.target = '_blank';
+                    card.rel = 'noopener';
+                    card.innerHTML =
+                        (imgSrc ? '<img class="cr-card-img" src="' + imgSrc + '" alt="' + addrText.replace(/"/g, '&quot;') + '" loading="lazy">' : '<div class="cr-card-img"></div>') +
+                        '<div class="cr-card-body">' +
+                            (rentText ? '<div class="cr-card-rent">' + rentText + '</div>' : '') +
+                            '<div class="cr-card-meta">' + [bbText, availText ? 'Available ' + availText : ''].filter(Boolean).join('  &middot;  ') + '</div>' +
+                            '<div class="cr-card-addr">' + addrText + '</div>' +
+                        '</div>';
+                    GRID.appendChild(card);
+                });
+            })
+            .catch(function () {
+                if (STATUS) STATUS.innerHTML = 'Listings are temporarily unavailable. <a href="#contact" style="color: var(--deep-green); font-weight: 500;">Reach out</a> and we\'ll send you what\'s open.';
+            });
+    })();
+    </script>
 
     <!-- BAUHAUS BAND -->
     <div class="bauhaus-band"><div class="b7"></div><div class="b6"></div><div class="b5"></div><div class="b4"></div><div class="b3"></div><div class="b2"></div><div class="b1"></div></div>
