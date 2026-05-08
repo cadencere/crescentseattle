@@ -174,12 +174,13 @@
         .hero-content {
             position: relative;
             z-index: 2;
-            padding: 56px 80px;
-            max-width: 900px;
-            background: rgba(20, 40, 32, 0.55);
-            backdrop-filter: blur(2px);
-            -webkit-backdrop-filter: blur(2px);
-            margin-left: 40px;
+            padding: 48px 64px;
+            max-width: 720px;
+            background: rgba(20, 40, 32, 0.58);
+            backdrop-filter: blur(3px);
+            -webkit-backdrop-filter: blur(3px);
+            margin-left: 80px;
+            border-radius: 6px;
         }
 
         .hero-tag {
@@ -280,7 +281,7 @@
 
         /* ─── SECTIONS ─── */
         section {
-            padding: 120px 80px;
+            padding: 80px 80px;
         }
 
         .section-tag {
@@ -390,7 +391,7 @@
         .floorplans-header {
             text-align: center;
             max-width: 600px;
-            margin: 0 auto 64px;
+            margin: 0 auto 40px;
         }
 
         .floorplans-header .section-text {
@@ -495,9 +496,9 @@
         .amenities-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 48px;
+            gap: 24px;
             max-width: 1100px;
-            margin: 64px auto 0;
+            margin: 40px auto 0;
         }
 
         .amenity-item {
@@ -688,7 +689,7 @@
         .gallery-header {
             text-align: center;
             max-width: 600px;
-            margin: 0 auto 64px;
+            margin: 0 auto 40px;
         }
 
         /* ─── SLIDESHOW ─── */
@@ -950,7 +951,7 @@
 
         /* ─── RESPONSIVE ─── */
         @media (max-width: 1024px) {
-            section { padding: 80px 40px; }
+            section { padding: 64px 40px; }
             .about-grid, .neighborhood-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
             .plan-grid { grid-template-columns: repeat(2, 1fr); }
             .amenities-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
@@ -1082,7 +1083,10 @@
     </div>
     <style>
         body.has-banner nav { top: 48px; }
-        body.has-banner { padding-top: 0; }
+        body.has-banner .hero { margin-top: 48px; }
+        @media (max-width: 600px) {
+            body.has-banner .hero { margin-top: 64px; }
+        }
         @media (max-width: 600px) {
             #prelease-banner { font-size: 12px; padding: 10px 44px 10px 16px; gap: 8px; }
             #prelease-banner span:first-child { font-size: 10px; padding: 3px 8px; }
@@ -1255,7 +1259,7 @@
 
     <!-- AMENITIES -->
     <section class="amenities" id="amenities">
-        <div style="text-align: center; max-width: 600px; margin: 0 auto 64px;">
+        <div style="text-align: center; max-width: 600px; margin: 0 auto 40px;">
             <div class="section-tag">Amenities</div>
             <h2 class="section-title">What's included</h2>
         </div>
@@ -1385,7 +1389,7 @@
     </section>
 
     <!-- AVAILABILITY -->
-    <section class="availability" id="availability" style="background: var(--warm-white); padding: 120px 80px;">
+    <section class="availability" id="availability" style="background: var(--warm-white);">
         <div style="text-align: center; max-width: 600px; margin: 0 auto 48px;">
             <div class="section-tag">Availability</div>
             <h2 class="section-title">What's open now</h2>
