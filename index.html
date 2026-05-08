@@ -180,17 +180,37 @@
         .hero-content {
             position: relative;
             z-index: 2;
-            padding: 40px 48px;
-            max-width: 620px;
-            background: rgba(20, 40, 32, 0.58);
-            backdrop-filter: blur(3px);
-            -webkit-backdrop-filter: blur(3px);
+            padding: 36px 40px;
+            max-width: 460px;
+            width: 38%;
+            background: rgba(20, 40, 32, 0.62);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
             margin-left: 64px;
             border-radius: 6px;
         }
 
         .hero-title {
-            font-size: clamp(40px, 5.5vw, 72px) !important;
+            font-size: clamp(36px, 3.4vw, 56px) !important;
+        }
+
+        .hero-sub {
+            font-size: 15px !important;
+            margin-bottom: 28px !important;
+        }
+
+        .hero-details {
+            gap: 24px !important;
+            margin-bottom: 32px !important;
+            flex-wrap: wrap;
+        }
+
+        .hero-detail-value {
+            font-size: 20px !important;
+        }
+
+        .hero-detail-label {
+            font-size: 10px !important;
         }
 
         .hero-tag {
@@ -992,7 +1012,7 @@
             }
             .mobile-menu { display: block; }
             section { padding: 64px 24px; }
-            .hero-content { padding: 40px 24px; margin-left: 16px; }
+            .hero-content { padding: 32px 24px; margin-left: 16px; margin-right: 16px; width: auto; max-width: 100%; }
             .hero-details { gap: 32px; }
             .plan-grid { grid-template-columns: 1fr; }
             .amenities-grid { grid-template-columns: 1fr; }
